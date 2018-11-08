@@ -20,20 +20,12 @@ var addNote = (title, body) => {
     body
   };
 
-  //
-  // var duplicateNotes = notes.filter((note) => {
-  //   return note.title === title;
-  // });
-
-   //simpler above code
-
   var duplicateNotes = notes.filter((note) => note.title === title);
   if (duplicateNotes.length === 0) {
     notes.push(note);
     saveNotes(notes);
     return note;
   }
-  //fs.appendFileSync('notes-data.json' , noteText);
 };
 
 var getAll = () => {
@@ -46,7 +38,6 @@ var getAll = () => {
 var getNote = (title) => {
   var notes = fetchNotes();
   var specificNote = notes.filter((note) => note.title === title);
-  // console.log(specificNote); // this returns an array , to get the specific value of title and body ,we pass as specificNote[0]
   return specificNote[0];
 };
 
@@ -70,8 +61,3 @@ module.exports = {
   removeNote,
   logNote
 };
-
-// module.exports.addNote = () => {
-//   console.log("inside addNote")
-//   return "NewNote"
-// }
