@@ -1,7 +1,7 @@
 const request = require('request');
 
 
-var getGeoCode = (address) => {
+var getGeoCode = (address, callback) => {
     var encodedAddress = encodeURIComponent(address);
     request( {
     url : `http://apidev.accuweather.com/locations/v1/search?q=${encodedAddress}&apikey=hoArfRosT1215`,
@@ -9,13 +9,17 @@ var getGeoCode = (address) => {
   }
     ,(error, response, body) => {
       if(error) {
-        console.log("unable to connect to API dev");
+        callback(`unable to connect to API dev ${response.statusCode}`);
       } else if( body.Code === 'Unauthorized') {
-        console.log("unauthorised");
+        callback(`Unauthorised ${response.statusCode}`);
       }
-  console.log(`Address: ${body[0].LocalizedName}` );
-  console.log(`Latitude ${body[0].GeoPosition.Latitude}`);
-  console.log(`Longitude ${body[0].GeoPosition.Longitude}`);
+      else if(response.statusCode === 200) {
+        callback (undefined, {
+            status : response.statusCode,
+            address : body[0].LocalizedName,
+            Latitude : body[0].GeoPosition.Latitude,
+            Longitude : body[0].GeoPosition.Longitude
+          })}
 })};
 
 module.exports = {
