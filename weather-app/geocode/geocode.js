@@ -1,4 +1,3 @@
-console.log("inside the geocode.js");
 const request = require('request');
 
 
@@ -14,7 +13,6 @@ var getGeoCode = (address) => {
       } else if( body.Code === 'Unauthorized') {
         console.log("unauthorised");
       }
-  //console.log(`body: ${JSON.stringify(body,undefined, 4)}`);
   console.log(`Address: ${body[0].LocalizedName}` );
   console.log(`Latitude ${body[0].GeoPosition.Latitude}`);
   console.log(`Longitude ${body[0].GeoPosition.Longitude}`);
