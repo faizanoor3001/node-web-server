@@ -15,11 +15,21 @@ const argv = yargs.
   .argv;
 
 
-  geocode.getGeoCode(argv.address, (errorMessage , results) => {
+  // geocode.getGeoCode(argv.address, (errorMessage , results) => {
+  //   if(errorMessage) {
+  //     console.log(errorMessage);
+  //   }
+  //   else {
+  //     console.log(JSON.stringify(results, undefined, 2));
+  //     console.log(results.status);
+  //   }
+  // });
+
+  geocode.getForecast(argv.address, (errorMessage, results) => {
     if(errorMessage) {
       console.log(errorMessage);
     }
     else {
-      console.log(JSON.stringify(results, undefined, 2));
+      console.log(results);
     }
   });
