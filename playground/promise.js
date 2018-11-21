@@ -10,24 +10,14 @@ var asyncAdd = (a, b) => {
     });
 };
 
+// promise chaining
+
 asyncAdd(5,7).then((res) => {
-  console.log('Result is ', res);
+  return asyncAdd(res, 33);
 } , (errorMessage) => {
   console.log(errorMessage);
-});
-
-var somePromise = new Promise((resolve, reject) => {
-    setTimeout(() =>{
-// either resolve once or reject once only
-      resolve('Hey. It worked');
-      reject('Unable to fulfill promise');
-    }, 2500);
-});
-
-//provides callback for success cases and error cases
-// below is called if a promise is fulfilled
-somePromise.then((message) => {
-  console.log(message);
-}, (errorMessage)=> {
-    console.log('Error', errorMessage);
+}).then((result) => {
+      console.log('Should be 45', result);
+} , (errorMessage) => {
+    console.log(errorMessage);
 });
