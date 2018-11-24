@@ -24,11 +24,11 @@ app.use( (req, res, next)=> {
 });
 
 // it will leave all the other handlers or routes from executing
-app.use(( req, res, next)=>{
-  res.render('maintainence.hbs', {
-      underMaintainence: 'We will be right back! Under maintainence'
-  })
-});
+// app.use(( req, res, next)=>{
+//   res.render('maintainence.hbs', {
+//       underMaintainence: 'We will be right back! Under maintainence'
+//   })
+// });
 
 app.use(express.static(__dirname + '/public'));
 
