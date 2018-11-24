@@ -9,6 +9,16 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
+//helper eg: to compute data which is required by every page
+hbs.registerHelper('getCurrentYear', () => {
+  return new Date().getFullYear()
+});
+
+hbs.registerHelper('screamIt', (text, text1) => {
+  return text.toUpperCase() + text1.toUpperCase();
+});
+
+
 //templating
 
 // root route and another argument is function
@@ -23,8 +33,8 @@ app.get('/', (req, res) => {
   // })
   res.render('home.hbs', {
     pageTitle: 'Home Page',
-    currentYear: new Date().getFullYear(),
     welcomeMessage: 'welcome to Node js Rendering Template lesson.',
+    secondArgument : 'Test secondArgument screamIt handlebar',
     authorName: 'Faiza Noor'
   })
 });
@@ -34,7 +44,6 @@ app.get('/about', (req,res) => {
   // to pass data by adding s2nd argument
   res.render('about.hbs', {
     pageTitle: 'About Page',
-    currentYear: new Date().getFullYear(),
     aboutMessage: 'It is about the express server.',
     authorName: 'Faiza Noor'
   });
