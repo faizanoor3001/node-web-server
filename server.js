@@ -37,10 +37,22 @@ hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear()
 });
 
+hbs.registerHelper('getAuthorName', () =>{
+    return 'Faiza Noor';
+})
+
 hbs.registerHelper('screamIt', (text, text1) => {
   return text.toUpperCase() + text1.toUpperCase();
 });
 
+// lesson - Add a new feature
+
+app.get('/projects', (req, res)=> {
+  res.render('projects.hbs', {
+      pageTitle: 'Projects Portfolio',
+      shortDescription:'Please find below the important URLS.'
+  });
+});
 
 //templating
 
@@ -58,7 +70,6 @@ app.get('/', (req, res) => {
     pageTitle: 'Home Page',
     welcomeMessage: 'welcome to Node js Rendering Template lesson.',
     secondArgument : 'Test secondArgument screamIt handlebar',
-    authorName: 'Faiza Noor'
   })
 });
 
@@ -68,7 +79,6 @@ app.get('/about', (req,res) => {
   res.render('about.hbs', {
     pageTitle: 'About Page',
     aboutMessage: 'It is about the express server.',
-    authorName: 'Faiza Noor'
   });
 });
 
