@@ -3,6 +3,8 @@ const hbs = require('hbs');
 var app = express();
 
 
+//partial files
+hbs.registerPartials(__dirname + '/views/partials');
 //middleware function
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
